@@ -4,6 +4,7 @@ from api.model.Postagem import Postagem
 from api.model.Comentario import Comentario
 from api.model.Compartilhamento import Compartilhamento
 from api.model.Curtida import Curtida
+from rest_framework.authtoken.models import Token
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -19,6 +20,7 @@ class UserSerializer(serializers.ModelSerializer):
             )
         user.set_password(validated_data['password'])
         user.save()
+        Token.objects.create(user=user)
         return user
 
 class PostagemSerializer(serializers.ModelSerializer):

@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
 
 from api.model.Postagem import Postagem
-from api.serializers import PostagemSerializer
+from api.serializers import PostagemSerializer, UserSerializer
 
 
 class PostagemList(APIView):
@@ -14,11 +14,13 @@ class PostagemList(APIView):
         return Response(data)
 
     def post(self, request):
+        user = request.data['user']
         texto = request.data['texto']
         numeroLikes = request.data['numeroLikes']
         numeroComentarios = request.data['numeroComentarios']
         numeroRts = request.data['numeroRts']
         postagem = Postagem(
+            user= user,
             texto= texto,
             numeroLikes= numeroLikes,
             numeroComentarios= numeroComentarios,

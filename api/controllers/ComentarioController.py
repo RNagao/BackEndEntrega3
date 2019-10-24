@@ -14,9 +14,13 @@ class ComentarioList(APIView):
         return Response(data)
 
     def post(self, request):
+        user = request.data['user']
+        postagem = request.data['postagem']
         texto = request.data['comentario']
         comentario = Comentario(
-            texto= texto,
+            user= user,
+            postagem= postagem,
+            texto= texto
             )
         comentario.save()
         data = ComentarioSerializer(comentario).data
