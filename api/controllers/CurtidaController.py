@@ -3,14 +3,14 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
 
-from api.model.Postagem import Postagem
-from api.serializers import PostagemSerializer
+from api.model.Curtida import Curtida
+from api.serializers import CurtidaSerializer
 
 
-class PostagemList(APIView):
+class CurtidaList(APIView):
     def get(self, request):
-        postagem = Postagem.objects.all()
-        data = PostagemSerializer(postagem, many=True).data
+        postagem = Curtida.objects.all()
+        data = CurtidaSerializer(postagem, many=True).data
         return Response(data)
 
     def post(self, request):

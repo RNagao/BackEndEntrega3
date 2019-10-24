@@ -1,6 +1,10 @@
 from rest_framework import serializers
-from api.model.Postagem import Postagem
 from django.contrib.auth.models import User
+from api.model.Postagem import Postagem
+from api.model.Comentario import Comentario
+from api.model.Compartilhamento import Compartilhamento
+from api.model.Curtida import Curtida
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -20,4 +24,19 @@ class UserSerializer(serializers.ModelSerializer):
 class PostagemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Postagem
+        fields = '__all__'
+
+class ComentarioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comentario
+        fields = '__all__'
+
+class CompartilhamentoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Compartilhamento
+        fields = '__all__'
+
+class CurtidaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Curtida
         fields = '__all__'
