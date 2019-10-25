@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
 
 from api.model.Compartilhamento import Compartilhamento
-from api.serializers import CompartilhamentoSerializer
+from api.serializers import CompartilhamentoSerializer, UserSerializer
 
 
 class CompartilhamentoList(APIView):
@@ -14,7 +14,7 @@ class CompartilhamentoList(APIView):
         return Response(data)
 
     def post(self, request):
-        user = request.data['user']
+        user = request.user
         postagem = request.data['postagem']
         compartilhamento = Compartilhamento(
             user= user,

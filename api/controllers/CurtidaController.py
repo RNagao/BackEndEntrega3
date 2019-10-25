@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
 
 from api.model.Curtida import Curtida
-from api.serializers import CurtidaSerializer
+from api.serializers import CurtidaSerializer, UserSerializer
 
 
 class CurtidaList(APIView):
@@ -14,7 +14,7 @@ class CurtidaList(APIView):
         return Response(data)
 
     def post(self, request):
-        user = request.data['user']
+        user = request.user
         postagem = request.data['postagem']
         curtida = Curtida(
             user= user,

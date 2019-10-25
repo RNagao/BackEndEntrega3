@@ -3,6 +3,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
 
+from django.contrib.auth.models import User
+
 from api.controllers.PostagemController import PostagemList
 from api.controllers.ComentarioController import ComentarioList
 from api.controllers.CompartilhamentoController import CompartilhamentoList
@@ -17,6 +19,7 @@ from django.contrib.auth import authenticate
 
 
 class UserCreate(generics.CreateAPIView):
+    queryset = User.objects.all()
     authentication_classes = ()
     permission_classes = ()
     serializer_class = UserSerializer

@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
 
 from api.model.Comentario import Comentario
-from api.serializers import ComentarioSerializer
+from api.serializers import ComentarioSerializer, UserSerializer
 
 
 class ComentarioList(APIView):
@@ -14,7 +14,7 @@ class ComentarioList(APIView):
         return Response(data)
 
     def post(self, request):
-        user = request.data['user']
+        user = request.user
         postagem = request.data['postagem']
         texto = request.data['comentario']
         comentario = Comentario(
